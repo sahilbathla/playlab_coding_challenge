@@ -10,7 +10,7 @@ describe UrlAnalytics do
   describe '.url' do
     subject { url_analytics.url }
 
-    it { is_expected.to eq('/api/users/{userId}/count_pending_messages') }
+    it { is_expected.to eq('GET /api/users/{user_id}/count_pending_messages') }
   end
 
   describe '.response_times' do
@@ -46,7 +46,7 @@ describe UrlAnalytics do
 
     it "should print the following output with expected mean, median & mode" do
       url_analytics.update(updated_parsed_log_line)
-      expect(url_analytics.to_s.gsub(/\t|\n*/, '') ).to eq("Url /api/users/{userId}/count_pending_messages:Occurences: 2Mean Response Time = 19.0 msMedian Response Time = 19.0 msMode Response Time(Latest Unimode) = 20.0 msMost Respondant Dyno = 2")
+      expect(url_analytics.to_s.gsub(/\t|\n*/, '') ).to eq("Url GET /api/users/{user_id}/count_pending_messages:Occurences: 2Mean Response Time = 19.0 msMedian Response Time = 19.0 msMode Response Time(Latest Unimode) = 20.0 msMost Respondant Dyno = 2")
     end
   end
 end
