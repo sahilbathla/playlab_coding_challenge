@@ -24,7 +24,10 @@ class LogParser
 
 	def self.parse(log_line)
 		log_data = log_line.split(' ')
-		raise InvalidLogFileContents if (log_data.length != 12)
-		LogParser.new(log_data)
+		begin
+			LogParser.new(log_data)
+		rescue
+			raise InvalidLogFileContents
+		end
 	end
 end

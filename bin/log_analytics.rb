@@ -13,8 +13,8 @@ ARGF.each do |line|
     else
         result[parsed_url_data.url] = UrlAnalytics.new(parsed_url_data)
     end
-  rescue InvalidLogFileContents => error
-    p "Invalid Log Line #{ line }. Failed with error #{ error.backtrace.inspect } Please check it!!"
+  rescue LogParser::InvalidLogFileContents => error
+    p "Invalid Log Line => #{ line }. Please check it!!"
   end
 end
 
