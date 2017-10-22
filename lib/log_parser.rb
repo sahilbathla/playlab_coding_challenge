@@ -11,8 +11,9 @@ class LogParser
 		# Better code can be to split by = & then use switch case to get path, status etc
 		# That will be optimal as it will remove any ordering issue
 		@log_type = log_data[2].gsub('at=', '')
-		@request_method = log_data[3].gsub('method=', '')
-		@url = log_data[4].gsub('path=', '').gsub(/\/users\/\d+/, '/users/{userId}')
+		@request_method = log_data[3].gsub('method=', '').upcase
+		@path = log_data[4].gsub('path=', '').gsub(/\/users\/\d+/, '/users/{user_id}')
+		@url = @request_method + ' ' + @path
 		@host = log_data[5].gsub('host=', '')
 		@fwd = log_data[6].gsub('fwd=', '')
 		@dyno = log_data[7].gsub('dyno=', '')
